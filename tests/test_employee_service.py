@@ -1,5 +1,5 @@
 import unittest
-from employee_service import app, db, Employee
+from employee_service.employee_service import app, db, Employee
 
 class EmployeeServiceTestCase(unittest.TestCase):
     def setUp(self):
@@ -31,21 +31,18 @@ class EmployeeServiceTestCase(unittest.TestCase):
         self.assertEqual(response.json['name'], 'Aniket Pant')
 
     def test_get_employee(self):
-        # First, create an employee
         self.app.post('/employee', json={'name': 'Aniket Pant', 'position': 'DevOps'})
         response = self.app.get('/employees/1')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json['name'], 'Aniket Pant')
 
     def test_update_employee(self):
-        # First, create an employee
         self.app.post('/employee', json={'name': 'Aniket Pant', 'position': 'DevOps'})
         response = self.app.put('/employee/1', json={'name': 'Aniket Pant', 'position': 'Developer'})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json['name'], 'Aniket Pant')
 
     def test_delete_employee(self):
-        # First, create an employee
         self.app.post('/employee', json={'name': 'Aniket Pant', 'position': 'DevOps'})
         response = self.app.delete('/employee/1')
         self.assertEqual(response.status_code, 200)

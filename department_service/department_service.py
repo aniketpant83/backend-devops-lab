@@ -25,7 +25,7 @@ def create_department():
     new_dept = Department(name=data['name'], description=data.get('description', ''))
     db.session.add(new_dept)
     db.session.commit()
-    return jsonify({'id': new_dept.id, 'name': new_dept.name, 'description': new_dept.description}), 
+    return jsonify({'id': new_dept.id, 'name': new_dept.name, 'description': new_dept.description})
     
 @app.route('/department/<int:dept_id>', methods=['PUT'])
 def update_department(dept_id):
