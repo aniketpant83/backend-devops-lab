@@ -22,3 +22,15 @@ Integrate with Source Control: Connect Jenkins to your Git repository.
 5. Configuration Management with Ansible
 Write Ansible Playbooks: Automate environment setup and deployment tasks using Ansible.
 Automate Deployments: Use Ansible for automated deployments to your Kubernetes cluster.
+
+---
+
+Steps to run code:
+
+- Backend Flask Microservices: Run each microservice (3 of them) but navigating to the that microservice directory and running 'python3 <microservice_name>.py'
+- Unit Tests: Run unit tests by navigating to root directory and running 'python3 -m unittest discover'
+
+---
+
+WIP: 
+Docker, kubernetes, Ansible, Jenkins, Reverse Proxy
