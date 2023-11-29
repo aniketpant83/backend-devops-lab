@@ -30,6 +30,10 @@ Steps to run code:
 - Backend Flask Microservices: Run each microservice (3 of them) but navigating to the that microservice directory and running 'python3 <microservice_name>.py'
 - Unit Tests: Run unit tests by navigating to root directory and running 'python3 -m unittest discover'
 
+If you want to use docker:
+- go to project root and type docker-compose up (will run the 3 microservices and one unit test service)
+- you can do ctrl+c to stop the containers and then docker-compose down
+
 ---
 
 WIP: 

@@ -1,0 +1,30 @@
+version: '3'
+services:
+  employee_service:
+    build: ./employee_service
+    ports:
+      - "5001:5001"
+    networks:
+      - 'mynetwork'
+  department_service:
+    build: ./department_service
+    ports:
+      - "5002:5002"
+    networks:
+      - 'mynetwork'
+  leave_management_service:
+    build: ./leave_management_service
+    ports:
+      - "5003:5003"
+    networks:
+      - mynetwork
+  test_service:
+    build: ./
+    depends_on:
+      - employee_service
+      - department_service
+      - leave_management_service
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
