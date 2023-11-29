@@ -25,7 +25,7 @@ Automate Deployments: Use Ansible for automated deployments to your Kubernetes c
 
 ---
 
-Steps to run code:
+**Steps to run code**
 
 - Backend Flask Microservices: Run each microservice (3 of them) but navigating to the that microservice directory and running 'python3 <microservice_name>.py'
 - Unit Tests: Run unit tests by navigating to root directory and running 'python3 -m unittest discover'
