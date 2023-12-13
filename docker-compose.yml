@@ -5,19 +5,22 @@ services:
     ports:
       - "5001:5001"
     networks:
-      - 'mynetwork'
+      - mynetwork
+
   department_service:
     build: ./department_service
     ports:
       - "5002:5002"
     networks:
-      - 'mynetwork'
+      - mynetwork
+
   leave_management_service:
     build: ./leave_management_service
     ports:
       - "5003:5003"
     networks:
       - mynetwork
+
   test_service:
     build: ./
     depends_on:
@@ -26,5 +29,19 @@ services:
       - leave_management_service
     networks:
       - mynetwork
+
+  ansible_service:
+    build: ./ansible_project
+    ports:
+      - "8080:80"
+    depends_on:
+      - employee_service
+      - department_service
+      - leave_management_service
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - mynetwork
+
 networks:
   mynetwork:

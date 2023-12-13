@@ -1,0 +1,43 @@
+- name: Check if Employee_Service is running
+  hosts: server1
+  tasks:
+    - name: Check if employee_service backend on port 5001 is active
+      wait_for:
+        port: 5001
+        timeout: 10
+      register: port_5001_check
+
+    - name: Print status for port 5001
+      debug:
+        msg: "Flask app on port 5001 is active."
+      when: port_5001_check.state == "started"
+
+- name: Check if Department_Service is running
+  hosts: server2
+  tasks:
+    - name: Check if department_service backend on port 5002 is active
+      wait_for:
+        port: 5002
+        timeout: 10
+      register: port_5002_check
+
+    - name: Print status for port 5002
+      debug:
+        msg: "Flask app on port 5002 is active."
+      when: port_5002_check.state == "started"
+
+- name: Check if Leave_Management_Service is running
+  hosts: server3
+  tasks:
+    - name: Check if leave_management_service backend on port 5003 is active
+      wait_for:
+        port: 5003
+        timeout: 10
+      register: port_5003_check
+
+    - name: Print status for port 5003
+      debug:
+        msg: "Flask app on port 5003 is active."
+      when: port_5003_check.state == "started"
+
+    
