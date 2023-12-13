@@ -5,19 +5,19 @@ Project Overview: Backend DevOps Lab
 A microservices-based backend system using Flask, orchestrated with Docker and Kubernetes, and integrated into a CI/CD pipeline with Jenkins and Ansible.
 
 1. Microservices Development with Flask
- - Designed individual microservices (Employee, Department, Leave Management).
- - Developed RESTful APIs for each microservice.
- - Used SQLAlechmy to handle DB.
+    - Designed individual microservices (Employee, Department, Leave Management).
+    - Developed RESTful APIs for each microservice.
+    - Used SQLAlechmy to handle DB.
 2. Testing 
- - Wrote unittests for automated testing of Flask microservices.
- - Postman for manual testing of APIs
+    - Wrote unittests for automated testing of Flask microservices.
+    - Postman for manual testing of APIs
 3. Containerization with Docker
- - Created 5 Dockerfiles: 1 for each microservice, 1 for unittests, and 1 for ansible (explain in next step)
- - A final docker compose file.
+    - Created 5 Dockerfiles: 1 for each microservice, 1 for unittests, and 1 for ansible (explain in next step)
+    - A final docker compose file.
 4. Configuration Management with Ansible: Wrote Ansible Playbooks to: 
- - Automate testing of microservices being up and running.
- - Automate set-up of Nginx reverse proxy.
- - As indicated in the previous point, created a Dockerfile for this too, and added to docker compose.
+    - Automate testing of microservices being up and running.
+    - Automate set-up of Nginx reverse proxy.
+    - As indicated in the previous point, created a Dockerfile for this too, and added to docker compose.
 5. WIP: Continuous Integration and Deployment with Jenkins
 6. WIP: Orchestration with Kubernetes
 
