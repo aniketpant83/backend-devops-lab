@@ -1,27 +1,28 @@
-# backend-devops-lab
+# Backend-Devops-Lab
 
 Project Overview: Backend DevOps Lab
+
 A microservices-based backend system using Flask, orchestrated with Docker and Kubernetes, and integrated into a CI/CD pipeline with Jenkins and Ansible.
 
 1. Microservices Development with Flask
 Design Microservices: Plan the architecture and design of individual microservices (e.g., Employee, Department, Leave Management).
 Develop RESTful APIs: Implement RESTful APIs for each microservice.
-Unit Testing: Write and run unit tests for each service to ensure code quality and functionality.
-2. Containerization with Docker
+2. Unit Testing + Postman: Write and run unit tests for each service to ensure code quality and functionality.
+3. Containerization with Docker
 Create Dockerfiles: Write Dockerfiles for each microservice.
-Build Docker Images: Build images for your microservices.
+Docker Compose: Build images for your microservices and run containers using docker compose.
+4. Configuration Management with Ansible
+Write Ansible Playbooks: Automate environment setup and deployment tasks using Ansible.
+Automate Deployments: Use Ansible for automated deployments to your Kubernetes cluster.
 Local Testing: Run and test your containers locally.
-3. Orchestration with Kubernetes
-Kubernetes Manifests: Write Kubernetes manifests (YAML files) for deploying your microservices.
-Deploy on Kubernetes: Deploy your microservices to a Kubernetes cluster (can be a local cluster like Minikube or a cloud-based one).
-Test Orchestration: Ensure microservices are communicating effectively and are scalable.
-4. Continuous Integration and Deployment with Jenkins
+5. Continuous Integration and Deployment with Jenkins
 Setup Jenkins: Configure Jenkins for your project.
 Build Pipeline: Create pipelines for automated building, testing, and deploying of your microservices.
 Integrate with Source Control: Connect Jenkins to your Git repository.
-5. Configuration Management with Ansible
-Write Ansible Playbooks: Automate environment setup and deployment tasks using Ansible.
-Automate Deployments: Use Ansible for automated deployments to your Kubernetes cluster.
+6. Orchestration with Kubernetes
+Kubernetes Manifests: Write Kubernetes manifests (YAML files) for deploying your microservices.
+Deploy on Kubernetes: Deploy your microservices to a Kubernetes cluster (can be a local cluster like Minikube or a cloud-based one).
+Test Orchestration: Ensure microservices are communicating effectively and are scalable.
 
 ---
 
@@ -49,6 +50,7 @@ If you want to use docker:
     4. playbooks are quite self-explanatory. Was running into an issue with nginx reverse proxy, but I think it was because I hadnt written the script to start it before I was trying to reload it. Also, service module caused failure, so had to swtich to command module to run it, and that worked.
     5. Dockerfile: The step to install sudo is there because Ansible was failing at the become module. Maybe some issues with docker not having sudo baked in which ansible needs.  
 
+---
 
 WIP: 
-Docker, kubernetes, Ansible, Jenkins, Reverse Proxy
+Kubernetes, Jenkins
