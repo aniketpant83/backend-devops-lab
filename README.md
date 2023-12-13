@@ -5,35 +5,31 @@ Project Overview: Backend DevOps Lab
 A microservices-based backend system using Flask, orchestrated with Docker and Kubernetes, and integrated into a CI/CD pipeline with Jenkins and Ansible.
 
 1. Microservices Development with Flask
-Design Microservices: Plan the architecture and design of individual microservices (e.g., Employee, Department, Leave Management).
-Develop RESTful APIs: Implement RESTful APIs for each microservice.
-2. Unit Testing + Postman: Write and run unit tests for each service to ensure code quality and functionality.
+ - Designed individual microservices (Employee, Department, Leave Management).
+ - Developed RESTful APIs for each microservice.
+ - Used SQLAlechmy to handle DB.
+2. Testing 
+ - Wrote unittests for automated testing of Flask microservices.
+ - Postman for manual testing of APIs
 3. Containerization with Docker
-Create Dockerfiles: Write Dockerfiles for each microservice.
-Docker Compose: Build images for your microservices and run containers using docker compose.
-4. Configuration Management with Ansible
-Write Ansible Playbooks: Automate environment setup and deployment tasks using Ansible.
-Automate Deployments: Use Ansible for automated deployments to your Kubernetes cluster.
-Local Testing: Run and test your containers locally.
-5. Continuous Integration and Deployment with Jenkins
-Setup Jenkins: Configure Jenkins for your project.
-Build Pipeline: Create pipelines for automated building, testing, and deploying of your microservices.
-Integrate with Source Control: Connect Jenkins to your Git repository.
-6. Orchestration with Kubernetes
-Kubernetes Manifests: Write Kubernetes manifests (YAML files) for deploying your microservices.
-Deploy on Kubernetes: Deploy your microservices to a Kubernetes cluster (can be a local cluster like Minikube or a cloud-based one).
-Test Orchestration: Ensure microservices are communicating effectively and are scalable.
+ - Created 5 Dockerfiles: 1 for each microservice, 1 for unittests, and 1 for ansible (explain in next step)
+ - A final docker compose file.
+4. Configuration Management with Ansible: Wrote Ansible Playbooks to: 
+ - Automate testing of microservices being up and running.
+ - Automate set-up of Nginx reverse proxy.
+ - As indicated in the previous point, created a Dockerfile for this too, and added to docker compose.
+5. WIP: Continuous Integration and Deployment with Jenkins
+6. WIP: Orchestration with Kubernetes
 
 ---
 
 **Steps to run code**
 
-- Backend Flask Microservices: Run each microservice (3 of them) but navigating to the that microservice directory and running 'python3 <microservice_name>.py'
-- Unit Tests: Run unit tests by navigating to root directory and running 'python3 -m unittest discover'
-
-If you want to use docker:
-- go to project root and type docker-compose up (will run the 3 microservices and one unit test service)
-- you can do ctrl+c to stop the containers and then docker-compose down
+- Clone repo to a directory and open on VSCode or editor of choice.
+- Install Docker (and if needed, other things too) and run 'docker compose up' from project root directory
+- This will run the 3 microservices, unit tests for all 3, and ansible playbooks.
+- Use to ctrl+c to stop the containers and then docker-compose down to delete containers. Remember to delete images for cleanup
+- Expected result of unit tests should be 17 tests running and passing, and ansible playbook with 8 oks and 7 changed, 0 fails.
 
 ---
 
@@ -42,8 +38,9 @@ If you want to use docker:
 - Docker:
     - The KEY difference in trying to make different services interact with each other, that wasnt caught in the react to flask communictaion from previous project, is that js loads onto browser and can fetch 'localhost' requests. However, in this project, containers cant talk to each other.
 
+
 - Ansible:
-    - Learnt the most here. Documented the files to explain in the places itself. However, will list what I learnt as I did. Refer to the ansible files to read along with the below points.
+    Learnt the most here. Documented the files to explain in the places itself. However, will list what I learnt as I did. Refer to the ansible files to read along with the below points.
     1. inventory.txt: creating a group called local in inventory and then putting localhost with ansible_connection=local will work when testing but we need to change that to docker as we test the same out in containers.
     2. nginx.conf.j2: dont forget to put http:// before <container_name:port_name>.
     3. run_playbook.sh: running two playbooks and cant put both in CMD stanza in the dockerfile, so created a shell script and added both. Also added script to stop container from shutting after execution of playbook so I can leave it open for debugging.
