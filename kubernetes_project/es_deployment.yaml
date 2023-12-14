@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-es-deployment
+spec:
+  replicas: 1  # Number of replicas
+  selector:
+    matchLabels:
+      app: flask-es
+  template:
+    metadata:
+      labels:
+        app: flask-es
+    spec:
+      containers:
+      - name: flask-es
+        image: flask-es-image:latest  # Use your Docker image name
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5001  # Flask default port

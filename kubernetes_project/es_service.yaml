@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-es-service
+spec:
+  type: NodePort  # Exposes the service outside of the cluster
+  selector:
+    app: flask-es
+  ports:
+  - port: 5001
+    targetPort: 5001
+    nodePort: 30001  # Port to be exposed on the host machine
