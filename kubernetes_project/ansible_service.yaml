@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ansible-service
+spec:
+  type: NodePort  # Exposing Nginx outside the cluster (use ClusterIP for internal only)
+  selector:
+    app: ansible
+  ports:
+  - port: 80  # The service port, which proxies to the Nginx container
+    targetPort: 80  # The port on the Nginx container
+    nodePort: 30004  # Optional: specify a node port; otherwise, a random port is assigned

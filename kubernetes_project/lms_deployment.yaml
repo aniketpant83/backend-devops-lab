@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flask-lms
-        image: flask-lms-image:latest  # Use your Docker image name
+        image: flask-lms-image:va  # Use your Docker image name
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5003  # Flask default port

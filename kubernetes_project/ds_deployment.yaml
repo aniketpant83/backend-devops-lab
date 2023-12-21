@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flask-ds
-        image: flask-ds-image:latest  # Use your Docker image name
+        image: flask-ds-image:va  # Use your Docker image name
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5002  # Flask default port

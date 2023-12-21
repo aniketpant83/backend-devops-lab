@@ -12,3 +12,7 @@ employee_portal_pp-department_service-1 ansible_connection=docker
 
 [server3]
 employee_portal_pp-leave_management_service-1 ansible_connection=docker
+
+[local]
+localhost ansible_connection=local
+
