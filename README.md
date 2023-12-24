@@ -44,10 +44,10 @@ A microservices-based backend system using Flask, orchestrated with Docker and K
 
 **Learnings:**
 
-*** Docker: Images + Compose***
+***Docker: Images + Compose***
     - The KEY difference in trying to make different services interact with each other, that wasnt caught in the react to flask communictaion from previous project, is that js loads onto browser and can fetch 'localhost' requests. However, in this project, containers cant talk to each other.
 
-*** Ansible: Nginx + Tests ***
+***Ansible: Nginx Reverse Proxy***
     Learnt the most here. Documented the files to explain in the places itself. However, will list what I learnt as I did. Refer to the ansible files to read along with the below points.
     1. inventory.txt: creating a group called local in inventory and then putting localhost with ansible_connection=local will work when testing but we need to change that to docker as we test the same out in containers.
     2. nginx.conf.j2: dont forget to put http:// before <container_name:port_name>. example: http://employee_portal_pp-employee_service-1:5001;
@@ -57,7 +57,7 @@ A microservices-based backend system using Flask, orchestrated with Docker and K
     6. Kubernetes part of ansible is explained in the kubernetes section.
     7. the ansible_connection=<insert> tells ansible whether to run thigns locally, or ssh into something or docker etc.
 
-*** Kubernetes: Minikube ***
+***Kubernetes: Minikube***
 
 Kubernetes is used for container orchestration. When we do docker compose, it just deploys once container per image. If that fails, it does not redeploy, it does not scale the number of containers according to traffice, it does not provide load balancing and many other features, all of which is provided by Kubernetes.
 
@@ -78,14 +78,14 @@ Kubernetes is used for container orchestration. When we do docker compose, it ju
 - Apply the prometheus config/changes using helm upgrade prometheus prometheus-community/prometheus -f values.yaml
 - kubectl port-forward svc/prometheus-server 9090:80 + http://localhost:9090 (on local)
 - Big bump in the road
- - Spent several hours trying to figure out why my flask-job in scrape metrics (prometheus server upgrade) wasn't showing as a target on the promUI. Could have left it when it wasn't working but kept digging and noticed that the changes to values.yaml were happening but configMap wasnt absorbing those changes, so had to manually edit it and delete pod to restart it and apply changes. 
- - This isn't sustianable as it wont detect future changes and this current manual change may get overwritten. Have figure out but moving ahead as the main purpose is accomplished. 
- - These kind of situations are a good test of what you are trying to derive from a project. I had learnt an okay amount about prom but I would have had that itch if I didnt get the job to display on the UI, so I persevered.
- - Grafana:
-  - Similar to prometheus, install grafana and using helm and kubectl, deploy it into the cluster. Do port forwarding to see it on your local.
-  - Login with admin username and password generation instructions.
-  - Configure prometheus as a data source and use the internal networking link http://prometheus-server.default.svc.cluster.local:80 as the link to prometheus.
-  - open dashboards and create visualizations.
+    - Spent several hours trying to figure out why my flask-job in scrape metrics (prometheus server upgrade) wasn't showing as a target on the promUI. Could have left it when it wasn't working but kept digging and noticed that the changes to values.yaml were happening but configMap wasnt absorbing those changes, so had to manually edit it and delete pod to restart it and apply changes. 
+    - This isn't sustianable as it wont detect future changes and this current manual change may get overwritten. Have figure out but moving ahead as the main purpose is accomplished. 
+    - These kind of situations are a good test of what you are trying to derive from a project. I had learnt an okay amount about prom but I would have had that itch if I didnt get the job to display on the UI, so I persevered.
+- Grafana:
+    - Similar to prometheus, install grafana and using helm and kubectl, deploy it into the cluster. Do port forwarding to see it on your local.
+    - Login with admin username and password generation instructions.
+    - Configure prometheus as a data source and use the internal networking link http://prometheus-server.default.svc.cluster.local:80 as the link to prometheus.
+    - open dashboards and create visualizations.
 
 What is the difference exactly?
 - Prometheus is meant to collect metrics and run queries. It doesn't focus on giving you the best UI. Prometheus has multiple pods for modularity each doing something else. Just list them out using kubectl.
