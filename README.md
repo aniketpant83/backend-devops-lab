@@ -19,8 +19,11 @@ A microservices-based backend system using Flask, orchestrated with Docker and K
     - Automate set-up of Nginx reverse proxy.
     - As indicated in the previous point, created a Dockerfile for this too, and added to docker compose.
 5. Orchestration with Kubernetes
+    - Created deployments + nodeport type services for 3 flask microservices and the ansible playboooks.
+    - had to reconfigure nginx settings to go from docker enviornment to minikube set-up.
 6. Prometheus and Grafana
-7. Continuous Integration and Deployment with Jenkins
+    - prom & grafana helm charts to scrape and visualize metrics from the department service.
+7. WIP: Continuous Integration and Deployment with Jenkins
 ---
 
 **Steps to run code**
@@ -41,10 +44,10 @@ A microservices-based backend system using Flask, orchestrated with Docker and K
 
 **Learnings:**
 
-- Docker:
+*** Docker: Images + Compose***
     - The KEY difference in trying to make different services interact with each other, that wasnt caught in the react to flask communictaion from previous project, is that js loads onto browser and can fetch 'localhost' requests. However, in this project, containers cant talk to each other.
 
-- Ansible:
+*** Ansible: Nginx + Tests ***
     Learnt the most here. Documented the files to explain in the places itself. However, will list what I learnt as I did. Refer to the ansible files to read along with the below points.
     1. inventory.txt: creating a group called local in inventory and then putting localhost with ansible_connection=local will work when testing but we need to change that to docker as we test the same out in containers.
     2. nginx.conf.j2: dont forget to put http:// before <container_name:port_name>. example: http://employee_portal_pp-employee_service-1:5001;
@@ -54,9 +57,7 @@ A microservices-based backend system using Flask, orchestrated with Docker and K
     6. Kubernetes part of ansible is explained in the kubernetes section.
     7. the ansible_connection=<insert> tells ansible whether to run thigns locally, or ssh into something or docker etc.
 
----
-
-***Documenting My Kubernetes Experience***
+*** Kubernetes: Minikube ***
 
 Kubernetes is used for container orchestration. When we do docker compose, it just deploys once container per image. If that fails, it does not redeploy, it does not scale the number of containers according to traffice, it does not provide load balancing and many other features, all of which is provided by Kubernetes.
 
@@ -70,9 +71,7 @@ Kubernetes is used for container orchestration. When we do docker compose, it ju
 - trying to get nginx to reverse proxy for all three flask apps with different location pathings didnt work. So, had to stick to just employee_service as reverse proxying. 
 - If you get the kubectl handshake timeout/minikube no response: restart pc, start docker daemon, and start minikube.
 
----
-
-***Prometheus & Grafana Learning Experience***
+***Prometheus & Grafana***
 
 - Install helm, then add prometheus helm chart repo, deploy prom.
 - Use get svc to check service name (mostly prometheus-server)
@@ -88,7 +87,7 @@ Kubernetes is used for container orchestration. When we do docker compose, it ju
   - Configure prometheus as a data source and use the internal networking link http://prometheus-server.default.svc.cluster.local:80 as the link to prometheus.
   - open dashboards and create visualizations.
 
-Prometheus VS Grafana: 
+What is the difference exactly?
 - Prometheus is meant to collect metrics and run queries. It doesn't focus on giving you the best UI. Prometheus has multiple pods for modularity each doing something else. Just list them out using kubectl.
 - Grafana: It is just meant to be a good looking central point of all your metrics regardless of where it came from. So it isn't linked to just prometheus basically.
 
