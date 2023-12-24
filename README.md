@@ -18,9 +18,9 @@ A microservices-based backend system using Flask, orchestrated with Docker and K
     - Automate testing of microservices being up and running.
     - Automate set-up of Nginx reverse proxy.
     - As indicated in the previous point, created a Dockerfile for this too, and added to docker compose.
-5. WIP: Continuous Integration and Deployment with Jenkins
-6. WIP: Orchestration with Kubernetes
-7. WIP: Prometheus and Grafana
+5. Orchestration with Kubernetes
+6. Prometheus and Grafana
+7. Continuous Integration and Deployment with Jenkins
 ---
 
 **Steps to run code**
