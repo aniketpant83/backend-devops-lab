@@ -1,9 +1,12 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from prometheus_flask_exporter import PrometheusMetrics
+
 
 app = Flask(__name__)
 CORS(app)
+metrics = PrometheusMetrics(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///departments.db'
 db = SQLAlchemy(app)
 
@@ -54,4 +57,4 @@ def delete_department(dept_id):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(host = '0.0.0.0', debug=True, port = 5002)
+    app.run(host = '0.0.0.0', port = 5002)

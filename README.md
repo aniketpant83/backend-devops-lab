@@ -74,5 +74,30 @@ Kubernetes is used for container orchestration. When we do docker compose, it ju
 - Enter a pod using kubectl exec -it <podName> -- /bin/bash
 - You can access other services from a container using curl <service_name>:<port number (5001 for eg)>
 - trying to get nginx to reverse proxy for all three flask apps with different location pathings didnt work. So, had to stick to just employee_service as reverse proxying. 
+- If you get the kubectl handshake timeout/minikube no response: restart pc, start docker daemon, and start minikube.
 
 ---
+
+***Prometheus & Grafana Learning Experience***
+
+- Install helm, then add prometheus helm chart repo, deploy prom.
+- Use get svc to check service name (mostly prometheus-server)
+- Apply the prometheus config/changes using helm upgrade prometheus prometheus-community/prometheus -f values.yaml
+- kubectl port-forward svc/prometheus-server 9090:80 + http://localhost:9090 (on local)
+- Big bump in the road
+ - Spent several hours trying to figure out why my flask-job in scrape metrics (prometheus server upgrade) wasn't showing as a target on the promUI. Could have left it when it wasn't working but kept digging and noticed that the changes to values.yaml were happening but configMap wasnt absorbing those changes, so had to manually edit it and delete pod to restart it and apply changes. 
+ - This isn't sustianable as it wont detect future changes and this current manual change may get overwritten. Have figure out but moving ahead as the main purpose is accomplished. 
+ - These kind of situations are a good test of what you are trying to derive from a project. I had learnt an okay amount about prom but I would have had that itch if I didnt get the job to display on the UI, so I persevered.
+ - Grafana:
+  - Similar to prometheus, install grafana and using helm and kubectl, deploy it into the cluster. Do port forwarding to see it on your local.
+  - Login with admin username and password generation instructions.
+  - Configure prometheus as a data source and use the internal networking link http://prometheus-server.default.svc.cluster.local:80 as the link to prometheus.
+  - open dashboards and create visualizations.
+
+Prometheus VS Grafana: 
+- Prometheus is meant to collect metrics and run queries. It doesn't focus on giving you the best UI. Prometheus has multiple pods for modularity each doing something else. Just list them out using kubectl.
+- Grafana: It is just meant to be a good looking central point of all your metrics regardless of where it came from. So it isn't linked to just prometheus basically.
+
+---
+
+
