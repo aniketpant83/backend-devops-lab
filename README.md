@@ -2,7 +2,7 @@
 
 Project Overview: Backend DevOps Lab
 
-A microservices-based backend system using Flask, orchestrated with Docker and Kubernetes, and integrated into a CI/CD pipeline with Jenkins and Ansible.
+A microservices-based backend system using Flask (Tested with unittests and Postman), Ansible, Nginx Reverse Proxy, orchestrated with Docker and Kubernetes, monitored using Prometheus & Grafana, and integrated into a CI/CD pipeline with Jenkins.
 
 1. Microservices Development with Flask
     - Designed individual microservices (Employee, Department, Leave Management).
@@ -20,9 +20,9 @@ A microservices-based backend system using Flask, orchestrated with Docker and K
     - As indicated in the previous point, created a Dockerfile for this too, and added to docker compose.
 5. Orchestration with Kubernetes
     - Created deployments + nodeport type services for 3 flask microservices and the ansible playboooks.
-    - had to reconfigure nginx settings to go from docker enviornment to minikube set-up.
+    - Had to reconfigure nginx settings to go from docker enviornment to minikube set-up.
 6. Prometheus and Grafana
-    - prom & grafana helm charts to scrape and visualize metrics from the department service.
+    - Used prom & grafana helm charts to scrape and visualize metrics from the department service.
 7. WIP: Continuous Integration and Deployment with Jenkins
 ---
 
