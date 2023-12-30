@@ -1,25 +1,17 @@
 pipeline {
     agent any // This tells Jenkins to run this pipeline on any available agent
 
-    environment {
-        // Define environment variables here
-        DOCKER_IMAGE_ES = "flask-es-image:va"
-        DOCKER_IMAGE_DS = "flask-ds-image:va"
-        DOCKER_IMAGE_LMS = "flask-lms-image:va"
-        DOCKER_IMAGE_ANSIBLE = "flask-ansible-image:va"
-        DOCKER_IMAGE_TEST = "flask-test-image:va"
-    }
 
     stages {
         stage('Build') {
             steps {
                 // Build the Docker image
                 script {
-                    docker.build ("${env.DOCKER_IMAGE_ES}", "employee_service/Dockerfile")
-                    docker.build ("${env.DOCKER_IMAGE_DS}", "department_service/Dockerfile")
-                    docker.build ("${env.DOCKER_IMAGE_LMS}", "leave_management_service/Dockerfile")
-                    docker.build ("${env.DOCKER_IMAGE_ANSIBLE}", "ansible_service/Dockerfile")
-                    docker.build ("${env.DOCKER_IMAGE_TEST}", "/Dockerfile")
+                    sh 'docker build -t flask-es-image:va employee_service/.'
+                    sh 'docker build -t flask-ds-image:va department_service/.'
+                    sh 'docker build -t flask-lms-image:va leave_management_service/.'
+                    sh 'docker build -t ansible-image:va ansible_project/.'
+                    sh 'docker build -t test:va .'
                 }
             }
         }
@@ -28,7 +20,7 @@ pipeline {
             steps {
                 // Run tests inside your Docker container
                 script {
-                    docker.run("${env.DOCKER_IMAGE_TEST}")
+                    sh 'docker run test:va'
                 }
             }
         }
@@ -56,11 +48,11 @@ pipeline {
         always {
             // Clean up after the pipeline is done
             script {
-                docker.rmi("${env.DOCKER_IMAGE_ES}")
-                docker.rmi("${env.DOCKER_IMAGE_DS}")
-                docker.rmi("${env.DOCKER_IMAGE_LMS}")
-                docker.rmi("${env.DOCKER_IMAGE_ANSIBLE}")
-                docker.rmi("${env.DOCKER_IMAGE_TEST}")
+                sh 'docker rmi flask-es-image:va'
+                sh 'docker rmi flask-ds-image:va'
+                sh 'docker rmi flask-lms-image:va'
+                sh 'docker rmi ansible-image:va'
+                sh 'docker rmi test:va'
             }
         }
 
