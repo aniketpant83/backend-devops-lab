@@ -91,6 +91,11 @@ What is the difference exactly?
 - Prometheus is meant to collect metrics and run queries. It doesn't focus on giving you the best UI. Prometheus has multiple pods for modularity each doing something else. Just list them out using kubectl.
 - Grafana: It is just meant to be a good looking central point of all your metrics regardless of where it came from. So it isn't linked to just prometheus basically.
 
+***Jenkins***
+- install java and then jenkins. Then run the war file.
+- go to localhost:8080 and do the set up of login -> pipeline
+- 
+
 ---
 
 
