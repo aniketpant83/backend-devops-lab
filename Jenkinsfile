@@ -15,11 +15,11 @@ pipeline {
             steps {
                 // Build the Docker image
                 script {
-                    docker.build "${env.DOCKER_IMAGE_ES}"
-                    docker.build "${env.DOCKER_IMAGE_DS}"
-                    docker.build "${env.DOCKER_IMAGE_LMS}"
-                    docker.build "${env.DOCKER_IMAGE_ANSIBLE}"
-                    docker.build "${env.DOCKER_IMAGE_TEST}"
+                    docker.build ("${env.DOCKER_IMAGE_ES}", "employee_service/Dockerfile")
+                    docker.build ("${env.DOCKER_IMAGE_DS}", "department_service/Dockerfile")
+                    docker.build ("${env.DOCKER_IMAGE_LMS}", "leave_management_service/Dockerfile")
+                    docker.build ("${env.DOCKER_IMAGE_ANSIBLE}", "ansible_service/Dockerfile")
+                    docker.build ("${env.DOCKER_IMAGE_TEST}", "/Dockerfile")
                 }
             }
         }
@@ -28,7 +28,7 @@ pipeline {
             steps {
                 // Run tests inside your Docker container
                 script {
-                    docker.run("${env.DOCKER_IMAGE_TEST}", "pytest")
+                    docker.run("${env.DOCKER_IMAGE_TEST}")
                 }
             }
         }
@@ -38,14 +38,14 @@ pipeline {
                 // Deploy your application, adjust this to your deployment method
                 script {
                     // Assuming you're using Kubernetes
-                    sh 'kubectl apply -f es_deployment.yaml'
-                    sh 'kubectl apply -f es_service.yaml'
-                    sh 'kubectl apply -f ds_deployment.yaml'
-                    sh 'kubectl apply -f ds_service.yaml'
-                    sh 'kubectl apply -f lms_deployment.yaml'
-                    sh 'kubectl apply -f lms_service.yaml'
-                    sh 'kubectl apply -f ansible_deployment.yaml'
-                    sh 'kubectl apply -f ansible_service.yaml'
+                    sh 'kubectl apply -f kubernetes_project/es_deployment.yaml'
+                    sh 'kubectl apply -f kubernetes_project/es_service.yaml'
+                    sh 'kubectl apply -f kubernetes_project/ds_deployment.yaml'
+                    sh 'kubectl apply -f kubernetes_project/ds_service.yaml'
+                    sh 'kubectl apply -f kubernetes_project/lms_deployment.yaml'
+                    sh 'kubectl apply -f kubernetes_project/lms_service.yaml'
+                    sh 'kubectl apply -f kubernetes_project/ansible_deployment.yaml'
+                    sh 'kubectl apply -f kubernetes_project/ansible_service.yaml'
                     
                 }
             }
