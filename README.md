@@ -92,9 +92,13 @@ What is the difference exactly?
 - Grafana: It is just meant to be a good looking central point of all your metrics regardless of where it came from. So it isn't linked to just prometheus basically.
 
 ***Jenkins***
+
+How this works is: jenkins is just pulling the code from the repo but is still running on the host at the end of the day. So, we need to have the docker daemon and minikube running on the host system (in my case, macOS).
+
 - install java and then jenkins. Then run the war file.
 - go to localhost:8080 and do the set up of login -> pipeline
-- 
+- create the jenkins file and push to github
+- build the pipeline for the code which jenkins will fetch from github
 
 ---
 
