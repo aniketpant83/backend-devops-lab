@@ -54,10 +54,10 @@ pipeline {
                         sh 'kubectl delete services --all'
                         sh """
                         eval \$(minikube docker-env)
-                        docker rmi flask-es-image:va
-                        docker rmi flask-ds-image:va
-                        docker rmi flask-lms-image:va
-                        docker rmi ansible-image:va
+                        docker rmi flask-es-image:va || true
+                        docker rmi flask-ds-image:va || true
+                        docker rmi flask-lms-image:va || true
+                        docker rmi ansible-image:va || true
                         """
                         sh 'docker stop test-container'
                         sh 'docker rm test-container'
