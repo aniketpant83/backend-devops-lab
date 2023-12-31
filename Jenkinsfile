@@ -38,14 +38,14 @@ pipeline {
                 script {
                     if (params.ACTION == 'deploy'){
                     // Assuming you're using Kubernetes
-                    sh 'kubectl apply -f kubernetes_project/es_deployment.yaml'
-                    sh 'kubectl apply -f kubernetes_project/es_service.yaml'
-                    sh 'kubectl apply -f kubernetes_project/ds_deployment.yaml'
-                    sh 'kubectl apply -f kubernetes_project/ds_service.yaml'
-                    sh 'kubectl apply -f kubernetes_project/lms_deployment.yaml'
-                    sh 'kubectl apply -f kubernetes_project/lms_service.yaml'
-                    sh 'kubectl apply -f kubernetes_project/ansible_deployment.yaml'
-                    sh 'kubectl apply -f kubernetes_project/ansible_service.yaml'
+                        sh 'kubectl apply -f kubernetes_project/es_deployment.yaml'
+                        sh 'kubectl apply -f kubernetes_project/es_service.yaml'
+                        sh 'kubectl apply -f kubernetes_project/ds_deployment.yaml'
+                        sh 'kubectl apply -f kubernetes_project/ds_service.yaml'
+                        sh 'kubectl apply -f kubernetes_project/lms_deployment.yaml'
+                        sh 'kubectl apply -f kubernetes_project/lms_service.yaml'
+                        sh 'kubectl apply -f kubernetes_project/ansible_deployment.yaml'
+                        sh 'kubectl apply -f kubernetes_project/ansible_service.yaml'
                     } else if (params.ACTION == 'delete'){
                         sh 'kubectl delete deployment --all'
                         sh 'kubectl delete services --all'
