@@ -23,7 +23,10 @@ A microservices-based backend system using Flask (Tested with unittests and Post
     - Had to reconfigure nginx settings to go from docker enviornment to minikube set-up.
 6. Prometheus and Grafana
     - Used prom & grafana helm charts to scrape and visualize metrics from the department service.
-7. WIP: Continuous Integration and Deployment with Jenkins
+7. Continuous Integration and Deployment with Jenkins
+    - Used Jenkins to automate the build (docker images), test (unittests), and deploy (deployments and services on cluster).
+    - Added a parameterized deploy/delete option.
+    
 ---
 
 **Steps to run code**
@@ -99,6 +102,7 @@ How this works is: jenkins is just pulling the code from the repo but is still r
 - Install java and then jenkins. Then run the war file.
 - Go to localhost:8080 and do the set up of login -> pipeline
 - Create the jenkins file in the root directory of the repo and push to github
+- paramterize whether you want to deploy or delete, in the jenkins file and in the UI.
 - Build the pipeline for the code which jenkins will fetch from github
 - Jobs to be considered: build (build docker images), test (run container to run unittests), and deploy/delete (kubernetes). 
 - The commands to be put in the Jenkinsfile is the same as what you would run if doing it locally, but this automtaes the process.
