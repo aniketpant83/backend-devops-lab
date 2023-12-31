@@ -10,16 +10,17 @@ pipeline {
             steps {
                 // Set docker env to minikube's and build the Docker image
                 script {
-                    sh """
-                    eval \$(minikube docker-env)
-                    docker build -t flask-es-image:va employee_service/.
-                    docker build -t flask-ds-image:va department_service/.
-                    docker build -t flask-lms-image:va leave_management_service/.
-                    docker build -t ansible-image:va ansible_project/.
-                    """
-                    sh 'docker build -t test:va .'
+                    if (params.ACTION == 'deploy'){
+                        sh """
+                        eval \$(minikube docker-env)
+                        docker build -t flask-es-image:va employee_service/.
+                        docker build -t flask-ds-image:va department_service/.
+                        docker build -t flask-lms-image:va leave_management_service/.
+                        docker build -t ansible-image:va ansible_project/.
+                        """
+                        sh 'docker build -t test:va .'
                 }
-
+                }
             }
         }
 
@@ -27,7 +28,9 @@ pipeline {
             steps {
                 // Run unittests inside test container
                 script {
-                    sh 'docker run --name test-container test:va'
+                    if (params.ACTION == 'deploy'){
+                        sh 'docker run --name test-container test:va'
+                    }
                 }
             }
         }
