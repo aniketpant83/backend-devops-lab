@@ -61,7 +61,7 @@ A microservices-based backend system using Flask (Tested with unittests and Post
 
 Kubernetes is used for container orchestration. When we do docker compose, it just deploys once container per image. If that fails, it does not redeploy, it does not scale the number of containers according to traffice, it does not provide load balancing and many other features, all of which is provided by Kubernetes.
 
-- You need to set docker daemon to the one in minikube because docker checks your system docker instead of the container docker. eval $(minikube docker-env) to set it to minikube docker and eval $(minikube docker-env -u) to unset it backt o host. Node Port is what we, the external party, accesses it from.  
+- You need to set docker daemon to the one in minikube because docker checks your system docker instead of the container docker. eval $(minikube docker-env) to set it to minikube docker and eval $(minikube docker-env -u) to unset it back to host. Node Port is what we, the external party, accesses it from.  
 - Till now I was deploying the app on docker compose up, now we just build each image separately from the dockerfile using 'docker build -t <image_name_in_my_deployment> .' Important to build images in the minikube docker env and not in host docker.
 - Next, write your manifests. We need one for deployment and one for service. Do this for how many every microservices you want to deploy. 
 - in the service manifest, there are three types of ports we are writing. It is essential to understand what each port is for. Nodeport is for external access, port is for what all services in cluster will talk using, target port is what service uses for load balancing.
@@ -86,6 +86,7 @@ Kubernetes is used for container orchestration. When we do docker compose, it ju
     - Login with admin username and password generation instructions.
     - Configure prometheus as a data source and use the internal networking link http://prometheus-server.default.svc.cluster.local:80 as the link to prometheus.
     - open dashboards and create visualizations.
+- If you clean up and delete all deployments/services, even the prom $ grafana set up get deleted (I did this).
 
 What is the difference exactly?
 - Prometheus is meant to collect metrics and run queries. It doesn't focus on giving you the best UI. Prometheus has multiple pods for modularity each doing something else. Just list them out using kubectl.
