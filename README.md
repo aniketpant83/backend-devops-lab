@@ -102,6 +102,7 @@ How this works is: jenkins is just pulling the code from the repo but is still r
 - Build the pipeline for the code which jenkins will fetch from github
 - Jobs to be considered: build (build docker images), test (run container to run unittests), and deploy (kubernetes). 
 - The commands to be put in the Jenkinsfile is the same as what you would run if doing it locally, but this automtaes the process.
+- Key hidden learning: env changes are lost after each sh '' ends, hence you need to do all the docker related commands under the same sh '' to make sure it has access to the minikube's docker env.
 
 ---
 
