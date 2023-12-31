@@ -27,7 +27,7 @@ pipeline {
             steps {
                 // Run unittests inside test container
                 script {
-                    sh 'docker run test:va --name test-container'
+                    sh 'docker run --name test-container test:va'
                 }
             }
         }
