@@ -86,7 +86,7 @@ Kubernetes is used for container orchestration. When we do docker compose, it ju
     - Login with admin username and password generation instructions.
     - Configure prometheus as a data source and use the internal networking link http://prometheus-server.default.svc.cluster.local:80 as the link to prometheus.
     - open dashboards and create visualizations.
-- If you clean up and delete all deployments/services, even the prom $ grafana set up get deleted (I did this).
+- If you clean up and delete all deployments/services, even the prom & grafana set up get deleted (I did this).
 
 What is the difference exactly?
 - Prometheus is meant to collect metrics and run queries. It doesn't focus on giving you the best UI. Prometheus has multiple pods for modularity each doing something else. Just list them out using kubectl.

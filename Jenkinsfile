@@ -7,6 +7,7 @@ pipeline {
             steps {
                 // Build the Docker image
                 script {
+                    sh 'eval $(minikube docker-env)'
                     sh 'docker build -t flask-es-image:va employee_service/.'
                     sh 'docker build -t flask-ds-image:va department_service/.'
                     sh 'docker build -t flask-lms-image:va leave_management_service/.'
