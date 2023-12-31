@@ -43,27 +43,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            // Clean up after the pipeline is done
-            script {
-                sh 'docker rmi flask-es-image:va'
-                sh 'docker rmi flask-ds-image:va'
-                sh 'docker rmi flask-lms-image:va'
-                sh 'docker rmi ansible-image:va'
-                sh 'docker rmi test:va'
-            }
-        }
-
-        success {
-            // Actions to take on success
-            echo 'Build, Test and Deployment stages succeeded!'
-        }
-
-        failure {
-            // Actions to take on failure
-            echo 'The pipeline failed!'
-        }
-    }
 }
