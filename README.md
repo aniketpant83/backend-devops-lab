@@ -96,10 +96,12 @@ What is the difference exactly?
 
 How this works is: jenkins is just pulling the code from the repo but is still running on the host at the end of the day. So, we need to have the docker daemon and minikube running on the host system (in my case, macOS).
 
-- install java and then jenkins. Then run the war file.
-- go to localhost:8080 and do the set up of login -> pipeline
-- create the jenkins file and push to github
-- build the pipeline for the code which jenkins will fetch from github
+- Install java and then jenkins. Then run the war file.
+- Go to localhost:8080 and do the set up of login -> pipeline
+- Create the jenkins file in the root directory of the repo and push to github
+- Build the pipeline for the code which jenkins will fetch from github
+- Jobs to be considered: build (build docker images), test (run container to run unittests), and deploy (kubernetes). 
+- The commands to be put in the Jenkinsfile is the same as what you would run if doing it locally, but this automtaes the process.
 
 ---
 
