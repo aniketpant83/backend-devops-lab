@@ -26,6 +26,7 @@ A microservices-based backend system using Flask (Tested with unittests and Post
 7. Continuous Integration and Deployment with Jenkins
     - Used Jenkins to automate the build (docker images), test (unittests), and deploy (deployments and services on cluster).
     - Added a parameterized deploy/delete option.
+8. WIP: Incorporate a feature written in Go
     
 ---
 
