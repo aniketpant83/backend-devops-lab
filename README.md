@@ -28,7 +28,6 @@ A microservices-based backend system using Flask (Tested with unittests and Post
     - Added a parameterized deploy/delete option.
 8. WIP: Incorporate Go for learining purposes.
 9. Further Scope: Argo CD.
-
     
 ---
 
