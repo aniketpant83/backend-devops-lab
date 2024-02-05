@@ -1,6 +1,6 @@
 # Backend-Devops-Lab
 
-Project Overview: Backend DevOps Lab
+## Project Overview:
 
 A microservices-based backend system using Flask (Tested with unittests and Postman), Ansible, Nginx Reverse Proxy, orchestrated with Docker and Kubernetes, monitored using Prometheus & Grafana, and integrated into a CI/CD pipeline with Jenkins.
 
@@ -30,7 +30,7 @@ A microservices-based backend system using Flask (Tested with unittests and Post
     
 ---
 
-**Steps to run code**
+## Steps to run code
 
 - Clone repo to a directory and open on VSCode or editor of choice.
 - Install Docker (and if needed, other things too) and run 'docker compose up' from project root directory
@@ -46,12 +46,12 @@ A microservices-based backend system using Flask (Tested with unittests and Post
 
 ---
 
-**Learnings:**
+## Learnings
 
-***Docker: Images + Compose***
+### Docker: Images + Compose
     - The KEY difference in trying to make different services interact with each other, that wasnt caught in the react to flask communictaion from previous project, is that js loads onto browser and can fetch 'localhost' requests. However, in this project, containers cant talk to each other.
 
-***Ansible: Nginx Reverse Proxy***
+### Ansible: Nginx Reverse Proxy
     Learnt the most here. Documented the files to explain in the places itself. However, will list what I learnt as I did. Refer to the ansible files to read along with the below points.
     1. inventory.txt: creating a group called local in inventory and then putting localhost with ansible_connection=local will work when testing but we need to change that to docker as we test the same out in containers.
     2. nginx.conf.j2: dont forget to put http:// before <container_name:port_name>. example: http://employee_portal_pp-employee_service-1:5001;
@@ -61,7 +61,7 @@ A microservices-based backend system using Flask (Tested with unittests and Post
     6. Kubernetes part of ansible is explained in the kubernetes section.
     7. the ansible_connection=<insert> tells ansible whether to run thigns locally, or ssh into something or docker etc.
 
-***Kubernetes: Minikube***
+### Kubernetes: Minikube
 
 Kubernetes is used for container orchestration. When we do docker compose, it just deploys once container per image. If that fails, it does not redeploy, it does not scale the number of containers according to traffic, it does not provide load balancing and many other features, all of which are provided by Kubernetes.
 
@@ -75,7 +75,7 @@ Kubernetes is used for container orchestration. When we do docker compose, it ju
 - Trying to get nginx to reverse proxy for all three flask apps with different location pathings didnt work. So, had to stick to just employee_service as reverse proxying. 
 - If you get the kubectl handshake timeout/minikube no response: restart pc, start docker daemon, and start minikube.
 
-***Prometheus & Grafana***
+### Prometheus & Grafana
 
 - Install helm, then add prometheus helm chart repo, deploy prom.
 - Use get svc to check service name (mostly prometheus-server)
@@ -96,7 +96,7 @@ What is the difference exactly?
 - Prometheus is meant to collect metrics and run queries. It doesn't focus on giving you the best UI. Prometheus has multiple pods for modularity each doing something else. Just list them out using kubectl.
 - Grafana: It is just meant to be a good looking central point of all your metrics regardless of where it came from. So it isn't linked to just prometheus basically.
 
-***Jenkins***
+### Jenkins
 
 How this works is: jenkins is just pulling the code from the repo but is still running on the host at the end of the day. So, we need to have the docker daemon and minikube running on the host system (in my case, macOS).
 
