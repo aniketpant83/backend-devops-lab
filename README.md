@@ -45,7 +45,7 @@ A microservices-based backend system using Flask (Tested with unittests and Post
 ## Steps To Run
 
 - Clone repo to a directory and open on VSCode or editor of choice.
-- Install Docker (and if needed, other things too) and run 'docker compose up' from project root directory
+- Install Docker (and if needed, other things too) and run `docker compose up` from project root directory
 - This will run the 3 microservices, unit tests for all 3, and ansible playbooks.
 - Use to ctrl+c to stop the containers and then docker-compose down to delete containers. Remember to delete images for cleanup
 - Expected result of unit tests should be 17 tests running and passing, and ansible playbook with 8 oks and 7 changed, 0 fails.
@@ -54,7 +54,7 @@ A microservices-based backend system using Flask (Tested with unittests and Post
     - Build each image separately in the minikube docker env.
     - write and run deployments + svcs.
     - access apps running on cluster from original host using minikube cluster ip with port given by minikube in terminal.
-    - if want to test from one conatiner to another, just do curl servicename:portname
+    - if want to test from one conatiner to another, just do `curl servicename:portname`
 
 ---
 
@@ -65,19 +65,19 @@ The point of this project is to learn. Below, I have just noted down some things
 
 ### Docker: Images + Compose
 
-The KEY difference in trying to make different services interact with each other, that wasnt caught in the react to flask communictaion from previous project, is that js loads onto browser and can fetch 'localhost' requests. However, in this project, containers cant talk to each other.
+The *key* difference in trying to make different services interact with each other, that wasnt caught in the react to flask communictaion from previous project, is that js loads onto browser and can fetch 'localhost' requests. However, in this project, containers cant talk to each other.
 
 ### Ansible: Nginx Reverse Proxy
 
 Learnt the most here. Documented the files to explain in the places itself. However, will list what I learnt as I did. Refer to the ansible files to read along with the below points.
 
 - inventory.txt: creating a group called local in inventory and then putting localhost with ansible_connection=local will work when testing but we need to change that to docker as we test the same out in containers.
-- nginx.conf.j2: dont forget to put http:// before <container_name:port_name>. example: http://employee_portal_pp-employee_service-1:5001;
+- nginx.conf.j2: dont forget to put http:// before <container_name:port_name>. example: `http://employee_portal_pp-employee_service-1:5001;`
 - run_playbook.sh: running two playbooks and cant put both in CMD stanza in the dockerfile, so created a shell script and added both. Also added script to stop container from shutting after execution of playbook so I can leave it open for debugging.
 - playbooks are quite self-explanatory. Was running into an issue with nginx reverse proxy, but I think it was because I hadnt written the script to start it before I was trying to reload it. Also, service module caused failure, so had to swtich to command module to run it, and that worked.
 - Dockerfile: The step to install sudo is there because Ansible was failing at the become module. Maybe some issues with docker not having sudo baked in which ansible needs.  
 - Kubernetes part of ansible is explained in the kubernetes section.
-- the ansible_connection=<insert> tells ansible whether to run thigns locally, or ssh into something or docker etc.
+- the `ansible_connection=<insert>` tells ansible whether to run thigns locally, or ssh into something or docker etc.
 
 ### Kubernetes: Minikube
 
@@ -106,7 +106,7 @@ Kubernetes is used for container orchestration. When we do docker compose, it ju
 - Grafana:
     - Similar to prometheus, install grafana and using helm and kubectl, deploy it into the cluster. Do port forwarding to see it on your local.
     - Login with admin username and password generation instructions.
-    - Configure prometheus as a data source and use the internal networking link http://prometheus-server.default.svc.cluster.local:80 as the link to prometheus.
+    - Configure prometheus as a data source and use the internal networking link `http://prometheus-server.default.svc.cluster.local:80` as the link to prometheus.
     - open dashboards and create visualizations.
 - If you clean up and delete all deployments/services, even the prom & grafana set up get deleted (I did this).
 
