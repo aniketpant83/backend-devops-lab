@@ -21,23 +21,23 @@ A microservices-based backend system using Flask (Tested with unittests and Post
 - Developed RESTful APIs for each microservice.
 - Used SQLAlechmy to handle DB.
 **2. Testing**
-    - Wrote unittests for automated testing of Flask microservices.
-    - Postman for manual testing of APIs
+- Wrote unittests for automated testing of Flask microservices.
+- Postman for manual testing of APIs
 **3. Containerization with Docker**
-    - Created 5 Dockerfiles: 1 for each microservice, 1 for unittests, and 1 for ansible (explain in next step)
-    - A final docker compose file.
+- Created 5 Dockerfiles: 1 for each microservice, 1 for unittests, and 1 for ansible (explain in next step)
+- A final docker compose file.
 **4. Configuration Management with Ansible: Wrote Ansible Playbooks to**
-    - Automate testing of microservices being up and running.
-    - Automate set-up of Nginx reverse proxy.
-    - As indicated in the previous point, created a Dockerfile for this too, and added to docker compose.
+- Automate testing of microservices being up and running.
+- Automate set-up of Nginx reverse proxy.
+- As indicated in the previous point, created a Dockerfile for this too, and added to docker compose.
 **5. Orchestration with Kubernetes**
-    - Created deployments + nodeport type services for 3 flask microservices and the ansible playboooks.
-    - Had to reconfigure nginx settings to go from docker enviornment to minikube set-up.
+- Created deployments + nodeport type services for 3 flask microservices and the ansible playboooks.
+- Had to reconfigure nginx settings to go from docker enviornment to minikube set-up.
 **6. Prometheus and Grafana**
-    - Used prom & grafana helm charts to scrape and visualize metrics from the department service.
+- Used prom & grafana helm charts to scrape and visualize metrics from the department service.
 **7. Continuous Integration and Deployment with Jenkins**
-    - Used Jenkins to automate the build (docker images), test (unittests), and deploy (deployments and services on cluster).
-    - Added a parameterized deploy/delete option.
+- Used Jenkins to automate the build (docker images), test (unittests), and deploy (deployments and services on cluster).
+- Added a parameterized deploy/delete option.
 **8. WIP: Incorporate Argo CD**
     
 ---
