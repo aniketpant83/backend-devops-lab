@@ -2,6 +2,7 @@
 
 ## Table of Contents
 - [Project Overview](#project-overview)
+- [Repo Contents](#repo-contents)
 - [Steps To Run](#steps-to-run)
 - [Learnings](#learnings)
     - Docker: Images + Compose
@@ -48,6 +49,27 @@ A microservices-based backend system backed with DevOps tools and practices for 
 
 **8. WIP: Incorporate Argo CD**
     
+---
+
+## Repo Contents
+
+- 3 Backend directories, one for each backend service (employee, department, leave_management), each has:
+ - Each has a Python file with backend code
+ - Dockerfile to containerise the folder
+ - a requirements.txt with dependencies to run the py code
+ - instance folder which is database created by SQLAlchemy
+- Ansible directory for:
+    - 2 playbooks, one shell script to run them, inventory file
+    - 2 nginx files
+    - Dockerfile
+- Tests directory, with 3 subfolders with tests for each backend service
+- Kubernetes directory with 4 deployments.yaml and 4 services.yaml
+- Prometheus directory with a values.yaml for scrape metrics
+- Jenkinsfile for the entire project
+- docker-compose.yml (deprecated, was for local running)
+- image_documentation directory with images for screenshots of working components
+- rest of the files/directories not mentioned above are deprecated too
+
 ---
 
 ## Steps To Run
