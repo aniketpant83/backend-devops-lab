@@ -1,6 +1,17 @@
 # Backend-Devops-Lab
 
-## Project Overview:
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Steps To Run](#steps-to-run)
+- [Learnings](#learnings)
+    - Docker: Images + Compose
+    - Ansible: Nginx Reverse Proxy
+    - Kubernetes: Minikube
+    - Prometheus & Grafana
+    - Jenkins
+
+
+## Project Overview
 
 A microservices-based backend system using Flask (Tested with unittests and Postman), Ansible, Nginx Reverse Proxy, orchestrated with Docker and Kubernetes, monitored using Prometheus & Grafana, and integrated into a CI/CD pipeline with Jenkins.
 
@@ -26,11 +37,11 @@ A microservices-based backend system using Flask (Tested with unittests and Post
 7. Continuous Integration and Deployment with Jenkins
     - Used Jenkins to automate the build (docker images), test (unittests), and deploy (deployments and services on cluster).
     - Added a parameterized deploy/delete option.
-8. WIP: Incorporate Argo CD for learining purposes.
+8. WIP: Incorporate Argo CD.
     
 ---
 
-## Steps to run code
+## Steps To Run
 
 - Clone repo to a directory and open on VSCode or editor of choice.
 - Install Docker (and if needed, other things too) and run 'docker compose up' from project root directory
