@@ -14,7 +14,7 @@
 
 ## Project Overview
 
-A microservices-based backend system using Flask (Tested with unittests and Postman), Ansible, Nginx Reverse Proxy, orchestrated with Docker and Kubernetes, monitored using Prometheus & Grafana, and integrated into a CI/CD pipeline with Jenkins.
+A microservices-based backend system backed with DevOps tools and practices for container orchestration, autoamted deployment, and monitoring.
 
 **1. Microservices Development with Flask**
 - Designed individual microservices (Employee, Department, Leave Management).
@@ -142,3 +142,5 @@ How this works is: jenkins is just pulling the code from the repo but is still r
 1. Make the backend services interact with each other.
 2. Make them share a common database.
 3. Incorporate more technologies (ArgoCD, GoLang, Artefactory etc)to learn the intricacies beyond what tutorials teach you.
+
+---
