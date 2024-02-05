@@ -17,9 +17,9 @@
 A microservices-based backend system using Flask (Tested with unittests and Postman), Ansible, Nginx Reverse Proxy, orchestrated with Docker and Kubernetes, monitored using Prometheus & Grafana, and integrated into a CI/CD pipeline with Jenkins.
 
 **1. Microservices Development with Flask**
-    - Designed individual microservices (Employee, Department, Leave Management).
-    - Developed RESTful APIs for each microservice.
-    - Used SQLAlechmy to handle DB.
+- Designed individual microservices (Employee, Department, Leave Management).
+- Developed RESTful APIs for each microservice.
+- Used SQLAlechmy to handle DB.
 **2. Testing**
     - Wrote unittests for automated testing of Flask microservices.
     - Postman for manual testing of APIs
