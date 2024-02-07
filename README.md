@@ -164,6 +164,6 @@ How this works is: jenkins is just pulling the code from the repo but is still r
 
 1. Make the backend services interact with each other.
 2. Make them share a common database.
-3. Incorporate more technologies (ArgoCD, GoLang, Artefactory etc)to learn the intricacies beyond what tutorials teach you.
+3. Incorporate more technologies (ArgoCD, GoLang, Artefactory etc)to learn intricacies beyond what tutorials teach you.
 
 ---
