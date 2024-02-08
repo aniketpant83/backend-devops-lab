@@ -142,7 +142,7 @@ Kubernetes is used for container orchestration. When we do docker compose, it ju
 
 What is the difference exactly?
 - Prometheus is meant to collect metrics and run queries. It doesn't focus on giving you the best UI. Prometheus has multiple pods for modularity each doing something else. Just list them out using kubectl.
-- Grafana: It is just meant to be a good looking central point of all your metrics regardless of where it came from. So it isn't linked to just prometheus basically.
+- Grafana: It is just meant to be a good looking lake of all your metrics regardless of where it came from. So it isn't linked to just prometheus basically.
 
 ### Jenkins
 
